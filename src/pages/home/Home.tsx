@@ -6,7 +6,7 @@ function Home() {
     return (
         <div
 
-            className="bg-indigo-900 flex justify-center"
+            className="bg-[#CDB4DB] flex justify-center"
         >
             {/*  Grid que divide a tela em 2 colunas  */}
             <div
@@ -20,10 +20,10 @@ function Home() {
                 >
                     <h2
                         className="text-5xl font-bold"
-                    >Seja Bem Vinde!</h2>
+                    >Um lugar para colocar o coração!</h2>
                     <p
                         className="text-xl"
-                    >Expresse aqui seus pensamentos e opiniões</p>
+                    >Escreva, compartilhe e se sinta mais leve.</p>
 
                     {/*Link Botão Nova Postagem*/}
                     <div
@@ -37,14 +37,16 @@ function Home() {
                 </div>
 
                 {/*  Coluna da Direita  */}
-                <div
-                    className="flex justify-center"
-                >
-                    <img
-                        src="https://i.imgur.com/fyfri1v.png"
-                        alt="Imagem da página inicial"
+                <div className="flex justify-center">
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         className="w-2/3"
-                    />
+                    >
+                        <source src="/Blog_pessoal.mp4" type="video/mp4" />
+                    </video>
                 </div>
             </div>
         </div>
