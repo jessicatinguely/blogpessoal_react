@@ -33,7 +33,7 @@ function Perfil() {
 
                 <div
                     className="relative -mt-24 h-90 flex flex-col
-                    bg-sky-500 text-white text-2xl items-center justify-center"
+                    bg-[#FFAFCC] text-white text-2xl items-center justify-center"
                 >
                     <p>Nome: {usuario.nome} </p>
                     <p>Email: {usuario.usuario}</p>
@@ -43,7 +43,7 @@ function Perfil() {
                         to={`/atualizarusuario`}
                         className="mt-8 w-full md:w-auto"
                     >
-                        <button className="w-full md:w-auto bg-linear-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2">
+                        <button className="w-full md:w-auto bg-linear-to-r from-[#FFAFCC] to-[#FFC8DD] hover:from-[#FFAFCC] hover:to-[#FFC8DD] text-white font-semibold px-8 py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200 flex items-center justify-center gap-2">
                             Editar Perfil
                         </button>
                     </Link>
