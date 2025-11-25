@@ -5,6 +5,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { buscar } from "../../../services/Service";
 import { SyncLoader } from "react-spinners";
 import type Tema from "../../../models/Tema";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function ListaTemas() {
 
@@ -22,7 +23,7 @@ function ListaTemas() {
 
 useEffect(() => {
   if(token === '') { // Se o token for vazio, redireciona o usuário para a página de login
-    alert('Você precisa estar logado para acessar essa página.');
+    ToastAlerta('Você precisa estar logado para acessar essa página.', 'info');
     navigate('/');
   }
 }, [token])

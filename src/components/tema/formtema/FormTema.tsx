@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import type Tema from "../../../models/Tema";
 import { atualizar, buscar, cadastrar } from "../../../services/Service";
 import { ClipLoader } from "react-spinners";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function FormTema() {
 
@@ -41,7 +42,7 @@ function FormTema() {
 
     useEffect(() => {
         if (token === '') { // Se o token for vazio, redireciona o usuário para a página de login
-            alert('Você precisa estar logado para acessar essa página.');
+            ToastAlerta('Você precisa estar logado para acessar essa página.','info');
             navigate('/');
         }
     }, [token])
@@ -67,12 +68,12 @@ function FormTema() {
                 await atualizar(`/temas`, tema, setTema, { // <-- CRASE AQUI
                     headers: { 'Authorization': token }
                   })                  
-                alert('Tema atualizado com sucesso!'); // Alerta de sucesso
+                ToastAlerta('Tema atualizado com sucesso!', 'sucesso'); // Alerta de sucesso
             } catch (error: any) {
                 if (error.toString().includes('401')) { // Se o erro for 401, o token expirou ou é inválido
                     handleLogout(); // Chama a função de logout do contexto de autenticação
                 } else {
-                    alert('Erro ao atualizaro tema! Verifique os dados e tente novamente.'); // Alerta de erro
+                    ToastAlerta('Erro ao atualizaro tema! Verifique os dados e tente novamente.', 'erro'); // Alerta de erro
                 }
             }
         } else {
@@ -83,12 +84,12 @@ function FormTema() {
                 await cadastrar('/temas', tema, setTema, { // Chama a função cadastrar do service para cadastrar o tema
                     headers: { 'Authorization': token } // Adiciona o token no cabeçalho da requisição para autenticação
                 })
-                alert('Tema cadastrado com sucesso!'); // Alerta de sucesso
+                ToastAlerta('Tema cadastrado com sucesso!', 'sucesso'); // Alerta de sucesso
             } catch (error: any) {
                 if (error.toString().includes('401')) { // Se o erro for 401, o token expirou ou é inválido
                     handleLogout(); // Chama a função de logout do contexto de autenticação
                 } else {
-                    alert('Erro ao cadastrar o tema! Verifique os dados e tente novamente.'); // Alerta de erro
+                    ToastAlerta('Erro ao cadastrar o tema! Verifique os dados e tente novamente.', 'erro'); // Alerta de erro
                 }
             }
         }
