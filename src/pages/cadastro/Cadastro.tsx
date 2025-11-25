@@ -3,6 +3,7 @@ import type Usuario from "../../models/Usuario";
 import { useNavigate } from "react-router-dom";
 import { cadastrarUsuario } from "../../services/Service";
 import { ClipLoader } from "react-spinners";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function Cadastro() {
 
@@ -54,15 +55,15 @@ function Cadastro() {
       try {
 
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario);
-        alert('Usuário cadastrado com sucesso!');
+        ToastAlerta('Usuário cadastrado com sucesso!', 'sucesso');
 
       } catch (error) {
-        alert('Erro ao cadastrar o usuário! Verifique os dados e tente novamente.');
+        ToastAlerta('Erro ao cadastrar o usuário! Verifique os dados e tente novamente.', 'erro');
 
 
       }
     } else {
-      alert("Dados do usuário inconsistentes! Verifique as informações do cadastro.");
+      ToastAlerta("Dados do usuário inconsistentes! Verifique as informações do cadastro.", 'erro');
       setUsuario({
         ...usuario,
         senha: ''
@@ -160,8 +161,8 @@ function Cadastro() {
             </button>
             <button
               type='submit'
-              className='rounded text-white bg-indigo-400 
-                           hover:bg-indigo-900 w-1/2 py-2
+              className='rounded text-white bg-[#FFC8DD]
+                           hover:bg-[#FFAFCC] w-1/2 py-2
                            flex justify-center'
               >
               {
