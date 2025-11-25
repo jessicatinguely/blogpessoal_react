@@ -115,7 +115,7 @@ function AtualizarUsuario() {
                 <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
                     <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr]">
                         {/* Seção da foto */}
-                        <div className="bg-linear-to-br from-sky-400 via-sky-500 to-indigo-500 p-8 flex flex-col items-center justify-center">
+                        <div className="bg-linear-to-br from-[#FFAFCC] via-[#FFAFCC] to-[#CDB4DB] p-8 flex flex-col items-center justify-center">
                             <div className="relative">
                                 <img
                                     src={user.foto}
@@ -145,7 +145,7 @@ function AtualizarUsuario() {
                                         id="nome"
                                         name="nome"
                                         placeholder="Digite seu nome completo"
-                                        className="w-full px-4 py-3 border-2 border-slate-700 rounded  focus:outline-none transition-colors"
+                                        className="w-full px-4 py-3 border-2 border-[#FFAFCC] rounded  focus:outline-none transition-colors"
                                         value={user.nome || ""}
                                         onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
                                         required
@@ -229,7 +229,7 @@ function AtualizarUsuario() {
                                     </button>
                                     <button
                                         type="submit"
-                                        className="flex-1 px-6 py-3 bg-linear-to-r from-indigo-600 to-indigo-700 text-white font-semibold rounded-xl hover:from-indigo-700 hover:to-indigo-800 shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                        className="flex-1 px-6 py-3 bg-linear-to-r from-[#FFAFCC] to-[#FFAFCC] text-white font-semibold rounded-xl hover:from-[#FFAFCC] hover:to-[#FFAFCC] shadow-lg hover:shadow-xl transition-all flex items-center justify-center gap-2"
                                         disabled={isLoading}
                                     >
                                         {isLoading ? (
