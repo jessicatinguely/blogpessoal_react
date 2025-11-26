@@ -15,7 +15,7 @@ function AtualizarUsuario() {
     const [user, setUser] = useState<Usuario>({} as Usuario)
     const [confirmarSenha, setConfirmarSenha] = useState<string>("")
    
-    const { usuario, handleLogout } = useContext(AuthContext)
+    const { usuario, handleLogout, isLogout } = useContext(AuthContext)
     const token = usuario.token
     const id: string = usuario.id.toString()
  
@@ -41,11 +41,10 @@ function AtualizarUsuario() {
     }
  
     useEffect(() => {
-        if (token === "") {
-            ToastAlerta("Você precisa estar logado!", "info")
+        if (!usuario.token && !isLogout) {
             navigate("/")
         }
-    }, [token])
+    }, [usuario.token, isLogout])
  
     // Reset
     useEffect(() => {
@@ -66,6 +65,7 @@ function AtualizarUsuario() {
  
     function sucesso() {
         handleLogout()
+        navigate("/")
     }
  
     function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {

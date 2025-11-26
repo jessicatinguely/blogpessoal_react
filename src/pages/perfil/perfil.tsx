@@ -10,11 +10,11 @@ function Perfil() {
     const { usuario, isLogout } = useContext(AuthContext)
 
     useEffect(() => {
-        if (!isLogout) {
+        if (usuario.token === "" && !isLogout) {
             ToastAlerta("Você precisa estar logado", "info")
             navigate("/")
         }
-    }, [usuario.token])
+    }, [usuario.token, isLogout, navigate])
 
     return (
         <div className="flex justify-center mx-4">
