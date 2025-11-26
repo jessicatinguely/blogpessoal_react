@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useRef, useState, type ReactNode } from "react";
 import type UsuarioLogin from "../models/UsuarioLogin";
 import { login } from "../services/Service";
 import { ToastAlerta } from "../utils/ToastAlerta";
@@ -9,6 +9,7 @@ interface AuthContextProps {
     handleLogout(): void
     handleLogin(usuario: UsuarioLogin): Promise<void>
     isLoading: boolean
+    isLogout: boolean
 }
 
 interface AuthProvideProps {
@@ -31,6 +32,9 @@ export function AuthProvider({ children }: AuthProvideProps) { // Componente que
     // Inicializar o Estado isLoading (Exibir e Ocultar o loader no FOrmulário de login)
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
+    // useRef - para saber se o Logout foi forçado ou não
+    const isLogout = useRef(false) // Guarda imuni de renderização
+
 
     //Implementação da Função logon (Autenticação no Backend)
     async function handleLogin(usuarioLogin: UsuarioLogin) {
@@ -41,13 +45,14 @@ export function AuthProvider({ children }: AuthProvideProps) { // Componente que
             ToastAlerta("Usuário autenticado com sucesso!","sucesso");
         } catch (error) {
             ToastAlerta("Os dados do usuário estão inconsistentes!", "erro");
-            
+            isLogout.current = false
         }
 
         setIsLoading(false);
     }
 
     function handleLogout() {
+        isLogout.current=true // Logout intencional 
         setUsuario({
             id: 0,
             nome: '',
@@ -60,7 +65,7 @@ export function AuthProvider({ children }: AuthProvideProps) { // Componente que
     }
 
         return (
-            <AuthContext.Provider value={{ usuario, handleLogout, handleLogin, isLoading }}>
+            <AuthContext.Provider value={{ usuario, handleLogout, handleLogin, isLoading, isLogout: isLogout.current }}>
                 {children}
             </AuthContext.Provider>
         )
